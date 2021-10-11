@@ -5,6 +5,7 @@ TipoRetorno CrearTexto(Texto &a){
     a = crearTextoVacio();
     return OK;
 }
+//                                                                                  1°
 TipoRetorno InsertarLinea(Texto &a){
     crearLinea(a);
     return OK;
@@ -13,16 +14,18 @@ TipoRetorno ImprimirTexto(Texto a){
     imprimirLinea(a);
     return OK;
 }
+//                                                                                  2°
 TipoRetorno InsertarLineaEnPosicion(Texto &a, Posicion posicionLinea){
-    if(posicionLinea== 0){
+    if(posicionLinea== 0 || posicionLinea>(cantLineas(a)+1)){
         return ERROR;
     }else if(posicionLinea<= cantLineas(a)){
         crearLineaPosicion(a, posicionLinea);
         return OK;
     }else{
-        return NO_IMPLEMENTADA;
+        return ERROR;
     }
 }
+//                                                                                  3°
 TipoRetorno BorrarLinea(Texto &a, Posicion posicionLinea){
     if(posicionLinea>cantLineas(a) || posicionLinea == 0){
         return ERROR;
@@ -32,6 +35,40 @@ TipoRetorno BorrarLinea(Texto &a, Posicion posicionLinea){
     }
 
 }
+//                                                                                  4°
+TipoRetorno BorrarTodo(Texto &a){
+    if(isEmpty(a)){
+        return OK;
+    }else{
+        borrarTodo(a);
+        return BorrarTodo(a);
+    }
+}
+
+//                                                                                  8°
+TipoRetorno InsertarPalabra(Texto a, Posicion posicionLinea, Posicion posicionPalabra, Cadena palabraAIngresar){
+    if(posicionLinea>cantLineas(a) || posicionLinea==0){ 
+        //Error por cantidad de lineas
+        return ERROR;
+    }else if(posicionPalabra==0 || posicionPalabra>(1+cantPalabras(a, posicionLinea))){ 
+        //Error por cantidad de palabras
+        return ERROR;
+    }else{
+        //Caso ok.
+        return OK;
+    }
+}
+
+/*
+
+TipoRetorno BorrarOcurrenciasPalabraEnTexto(Texto a, Cadena palabraABorrar);
+TipoRetorno ComprimirTexto(Texto &a);
+
+TipoRetorno BorrarPalabra(Texto a, Posicion posicionLinea, Posicion posicionPalabra);
+TipoRetorno BorrarOcurrenciasPalabraEnLinea(Texto a, Posicion posicionLinea, Cadena palabraABorrar);
+TipoRetorno ImprimirLinea(Texto a, Posicion posicionLinea);
+*/
+
 
 
 void verificacion(TipoRetorno r){
@@ -67,16 +104,3 @@ int menu(){
 }   
 
 
-/*
-
-
-TipoRetorno BorrarTodo(Texto &a);
-TipoRetorno BorrarOcurrenciasPalabraEnTexto(Texto a, Cadena palabraABorrar);
-TipoRetorno ImprimirTexto(Texto a);
-TipoRetorno ComprimirTexto(Texto &a);
-
-TipoRetorno InsertarPalabra(Texto a, Posicion posicionLinea, Posicion posicionPalabra, Cadena palabraAIngresar);
-TipoRetorno BorrarPalabra(Texto a, Posicion posicionLinea, Posicion posicionPalabra);
-TipoRetorno BorrarOcurrenciasPalabraEnLinea(Texto a, Posicion posicionLinea, Cadena palabraABorrar);
-TipoRetorno ImprimirLinea(Texto a, Posicion posicionLinea);
-*/

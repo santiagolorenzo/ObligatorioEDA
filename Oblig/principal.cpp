@@ -77,10 +77,9 @@ int main(){
         }
     }
 
+	/*
 
-
-    /*
-    tr = InsertarLinea(t);
+     tr = InsertarLinea(t);
     verificacion(tr);
     tr = InsertarLinea(t);
     verificacion(tr);
@@ -90,14 +89,17 @@ int main(){
     verificacion(tr);
     tr = InsertarLinea(t);
     verificacion(tr);
-    tr = InsertarLineaEnPosicion(t, 0);
+    tr = InsertarLineaEnPosicion(t, 10);
     verificacion(tr);
-    tr = ImprimirTexto(t);
-    tr = BorrarLinea(t, 2);
+    tr = BorrarLinea(t, 0);
     verificacion(tr);
     tr = ImprimirTexto(t);
     verificacion(tr);
+    //tr = BorrarTodo(t);
+    //verificacion(tr);
     printf("la cantidad de lineas es %d\n", cantLineas(t));
-
-    */
+    printf("la cantidad de palabras es %d\n", cantPalabras(t, 1));
+	
+	*/
+	
 }

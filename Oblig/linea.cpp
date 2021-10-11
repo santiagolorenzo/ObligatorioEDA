@@ -36,6 +36,17 @@ int cantLineas(Texto t){
         return 1+cantLineas(tail(t));
     }
 }
+int cantPalabras(Texto t, int x){
+    if(x>cantLineas(t)){
+        return -1;
+    }else if(isEmpty(t)){
+        return 0;
+    }else if(x==1){
+        return cantPalabras(t->palabras);
+    }else{
+        return cantPalabras(tail(t), x-1);
+    }
+}
 void crearLineaPosicion(Texto &t, int x){
     if(!isEmpty(t)){
         if(x==1){
@@ -47,13 +58,25 @@ void crearLineaPosicion(Texto &t, int x){
     }
 }
 void borrarLineaPosicion(Texto &t, int x){      //Ver si funciona cuando hayan palabras
-    if(t!=NULL){
-        if(x==1){
-            Texto aux=t;
-            t=t->sig;
-            delete aux;
-        }
+    if(x==1){
+        Texto aux=tail(t);
+        delete t;
+        t=aux;
+    }
+    if(!isEmpty(t)){
         borrarLineaPosicion(t->sig,x-1);
     }
 }
-
+void borrarTodo(Texto &t){
+    if(!isEmpty(t)){
+        borrarLineaPosicion(t, 1);
+        borrarTodo(t);
+    }
+}
+void crearPalabraPosicion(Texto t, int plinea, int ppalabra, Cadena palabra){
+    if(plinea==1 && !isEmpty(t)){
+        insertarPalabra(t->palabras, ppalabra, palabra);
+    }else{
+        crearPalabraPosicion(t->sig, plinea-1, ppalabra, palabra);
+    }
+}
