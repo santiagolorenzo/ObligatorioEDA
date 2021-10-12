@@ -1,6 +1,5 @@
 #include "oblig.h"
-#include <stdio.h>
-
+#include "palabra.h"
 TipoRetorno CrearTexto(Texto &a){
     a = crearTextoVacio();
     return OK;
@@ -8,10 +7,6 @@ TipoRetorno CrearTexto(Texto &a){
 //                                                                                  1°
 TipoRetorno InsertarLinea(Texto &a){
     crearLinea(a);
-    return OK;
-}
-TipoRetorno ImprimirTexto(Texto a){
-    imprimirLinea(a);
     return OK;
 }
 //                                                                                  2°
@@ -44,20 +39,46 @@ TipoRetorno BorrarTodo(Texto &a){
         return BorrarTodo(a);
     }
 }
+//                                                                                  5°
+TipoRetorno BorrarOcurrenciasPalabraEnTexto(Texto a, Cadena palabraABorrar){
+        borrarOcurrenciasPalabraEnTexto(a, palabraABorrar);
+        return OK;
+}
 
+//                                                                                  6°
+TipoRetorno ImprimirTexto(Texto a){                                         
+    imprimirTexto(a);
+    return OK;
+}
 //                                                                                  8°
 TipoRetorno InsertarPalabra(Texto a, Posicion posicionLinea, Posicion posicionPalabra, Cadena palabraAIngresar){
-    if(posicionLinea>cantLineas(a) || posicionLinea==0){ 
-        //Error por cantidad de lineas
-        return ERROR;
-    }else if(posicionPalabra==0 || posicionPalabra>(1+cantPalabras(a, posicionLinea))){ 
-        //Error por cantidad de palabras
-        return ERROR;
+    if(a!=NULL){
+        if(posicionLinea>cantLineas(a) || posicionLinea==0){ 
+            //Error por cantidad de lineas
+            return ERROR;
+        }else if(posicionPalabra==0 || posicionPalabra>(1+cantPalabras(a, posicionLinea))){ 
+            //Error por cantidad de palabras
+            return ERROR;
+        }else{
+            //Caso ok.
+            crearPalabraPosicion(a, posicionLinea, posicionPalabra, palabraAIngresar);
+            return OK;
+        }
     }else{
-        //Caso ok.
-        return OK;
+        return ERROR;
     }
 }
+
+//                                                                                    10°
+TipoRetorno BorrarOcurrenciasPalabraEnLinea(Texto a, Posicion posicionLinea, Cadena palabraABorrar){            /// Probar cuando tenga palabras agregadas
+    if (posicionLinea>= 0 && posicionLinea <= cantLineas(a)+1){
+        borrarOcurrenciasPalabraEnLinea(a, posicionLinea, palabraABorrar);
+        return OK;
+    }else{
+        return ERROR;
+    }
+}
+
 
 /*
 
