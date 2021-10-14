@@ -3,8 +3,9 @@
 
 #include "linea.h"
 #include "palabra.h"
+#include <string.h>
 
-#define MAX_CANT_PALABRAS_X_LINEA 10
+#define MAX_CANT_PALABRAS_X_LINEA 3
 
 typedef char* Cadena;
 enum _retorno{
@@ -55,12 +56,15 @@ TipoRetorno BorrarOcurrenciasPalabraEnTexto(Texto a, Cadena palabraABorrar);
 //Pre: Na.
 //Post: Borra tolas las ocurrencias de la palabraABorrar de la línea posicionLinea del texto a
 TipoRetorno BorrarOcurrenciasPalabraEnLinea(Texto a, Posicion posicionLinea, Cadena palabraABorrar);
-
+/*
+//Pre: Na.
+//Post: Borra la palabra de la posición posicionPalabra de la línea posicionLinea
+TipoRetorno BorrarPalabra(Texto a, Posicion posicionLinea, Posicion posicionPalabra);
+*/
 /*
 
 
 TipoRetorno ComprimirTexto(Texto &a);
-TipoRetorno BorrarPalabra(Texto a, Posicion posicionLinea, Posicion posicionPalabra);
 TipoRetorno ImprimirLinea(Texto a, Posicion posicionLinea);
 */
 

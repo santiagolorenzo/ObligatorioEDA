@@ -2,8 +2,7 @@
 #define LINEA_H
 
 #include "palabra.h"
-#include <stdlib.h>
-#include <stdio.h>
+#include "oblig.h"
 
 struct str_linea{
     Palabra palabras;
@@ -71,8 +70,12 @@ void borrarTodo(Texto &t);
 void borrarOcurrenciasPalabraEnLinea(Texto &t, int x, Cadena palabraABorrar);
 
 //Pre: Na.
-//Pot: Borra todas las ocurrencias de la palabra dada en el texto t
+//Pos: Borra todas las ocurrencias de la palabra dada en el texto t
 void borrarOcurrenciasPalabraEnTexto(Texto &t, Cadena palabraABorrar);
 
-
+/*
+//Pre: Na.
+//Pos: Imprime la línea en la posición x
+void imprimirLineaPosicion(Texto t, int x);
+*/
 #endif // LINEA_H

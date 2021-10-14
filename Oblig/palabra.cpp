@@ -1,16 +1,20 @@
 #include "palabra.h"
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
+#include "linea.h"
+#include "oblig.h"
 
 Palabra crearPalabrasVacia(){
     return NULL;
 }
 
 void crearPalabra(Palabra &p, Cadena palabra){
-    Palabra aux=new struct str_pal;
-    aux->palabra= palabra;
+    Palabra aux = new struct str_pal;
+    aux->palabra = new char;
+    memcpy(aux->palabra, palabra, sizeof(palabra)+1);
     aux->sig= p;
-    p= aux;
+    p = aux;
 }
 
 bool isEmpty(Palabra p){
@@ -48,4 +52,24 @@ void insertarPalabra(Palabra &p, int x, Cadena palabra){
     }else{
         insertarPalabra(p->sig, x-1, palabra);
     }
+}
+
+void borrarPalabraPosicion(Texto &t, int xl, int xp){
+    if(xl==1){
+	    borrarPalabra(t->palabras,xp);
+    }
+    else if(!isEmpty(t)){
+	    borrarPalabraPosicion(t->sig, xl-1, xp);
+    }
+}
+//borra palabra de la posicion xp
+void borrarPalabra(Palabra &p, int xp){
+	if(xp==1){
+        	Palabra aux = tail(p);
+        	delete p;
+       		 p =aux;
+	}
+	else if (!isEmpty(p)){
+        	borrarPalabra(p->sig, xp-1);
+	}
 }

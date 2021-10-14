@@ -114,14 +114,21 @@ int main(){
     verificacion(tr);
     tr = ImprimirTexto(t);
     verificacion(tr);
+
+    printf("Ingresa una nueva palabra: ");
+    scanf("%s", x);
+    tr= InsertarPalabra(t, 1, p+1, x);
+    tr= InsertarPalabra(t, 1, p+1, x);
+    tr = ImprimirTexto(t);
     printf("Ingresa una palabra a borrar: ");    
     scanf("%s", y);
     printf("%s\n", y);
-    //y = strcpy(x, y);
-    tr = BorrarOcurrenciasPalabraEnLinea(t, 1, y);
-    //tr = BorrarOcurrenciasPalabraEnTexto(t, y);
+    //tr = BorrarOcurrenciasPalabraEnLinea(t, 1, y);
+    tr = BorrarOcurrenciasPalabraEnTexto(t, y);
     verificacion(tr);
     tr = ImprimirTexto(t);
     verificacion(tr);
+
+    //imprimirLineaPosicion(t, 4);
 
 }

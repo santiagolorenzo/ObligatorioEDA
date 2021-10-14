@@ -1,5 +1,10 @@
 #include "oblig.h"
+#include "linea.h"
 #include "palabra.h"
+
+#include <stdio.h>
+#include <stdlib.h>
+
 TipoRetorno CrearTexto(Texto &a){
     a = crearTextoVacio();
     return OK;
@@ -50,6 +55,11 @@ TipoRetorno ImprimirTexto(Texto a){
     imprimirTexto(a);
     return OK;
 }
+
+//                                                                                  7°
+//TipoRetorno ComprimirTexto(Texto &a);
+
+
 //                                                                                  8°
 TipoRetorno InsertarPalabra(Texto a, Posicion posicionLinea, Posicion posicionPalabra, Cadena palabraAIngresar){
     if(a!=NULL){
@@ -69,8 +79,27 @@ TipoRetorno InsertarPalabra(Texto a, Posicion posicionLinea, Posicion posicionPa
     }
 }
 
+//                                                                                  9°
+TipoRetorno BorrarPalabra(Texto a, Posicion posicionLinea, Posicion posicionPalabra){
+    if(a!=NULL){
+        if(posicionLinea>cantLineas(a) || posicionLinea==0){ 
+            //Error por cantidad de lineas
+            return ERROR;
+        }else if(posicionPalabra==0 || posicionPalabra>(1+cantPalabras(a, posicionLinea))){ 
+            //Error por cantidad de palabras
+            return ERROR;
+        }else{
+            //Caso ok.
+            borrarPalabraPosicion(a, posicionLinea, posicionPalabra);
+            return OK;
+        }
+    }else{
+        return ERROR;
+    }
+}
+
 //                                                                                    10°
-TipoRetorno BorrarOcurrenciasPalabraEnLinea(Texto a, Posicion posicionLinea, Cadena palabraABorrar){            /// Probar cuando tenga palabras agregadas
+TipoRetorno BorrarOcurrenciasPalabraEnLinea(Texto a, Posicion posicionLinea, Cadena palabraABorrar){           
     if (posicionLinea>= 0 && posicionLinea <= cantLineas(a)+1){
         borrarOcurrenciasPalabraEnLinea(a, posicionLinea, palabraABorrar);
         return OK;
@@ -79,16 +108,11 @@ TipoRetorno BorrarOcurrenciasPalabraEnLinea(Texto a, Posicion posicionLinea, Cad
     }
 }
 
+//                                                                                    11°
+//TipoRetorno ImprimirLinea(Texto a, Posicion posicionLinea);
 
-/*
 
-TipoRetorno BorrarOcurrenciasPalabraEnTexto(Texto a, Cadena palabraABorrar);
-TipoRetorno ComprimirTexto(Texto &a);
 
-TipoRetorno BorrarPalabra(Texto a, Posicion posicionLinea, Posicion posicionPalabra);
-TipoRetorno BorrarOcurrenciasPalabraEnLinea(Texto a, Posicion posicionLinea, Cadena palabraABorrar);
-TipoRetorno ImprimirLinea(Texto a, Posicion posicionLinea);
-*/
 
 
 

@@ -1,6 +1,10 @@
 #include "linea.h"
 #include "palabra.h"
+#include "oblig.h"
 #include <string.h>
+
+#include <stdio.h>
+#include <stdlib.h>
 
 Texto crearTextoVacio(){
     return NULL;
@@ -101,17 +105,29 @@ void crearPalabraPosicion(Texto t, int plinea, int ppalabra, Cadena palabra){
 void borrarOcurrenciasPalabraEnLinea(Texto &t, int x, Cadena palabraABorrar){
     if (x>= 0 && x <= cantLineas(t)+1){
         if(x == 1){
-            Palabra aux2 = t->palabras;
-            while (!isEmpty(aux2)){
-                aux2 = aux2->sig;
-                if (strcmp(palabraABorrar, t->palabras->palabra) == 0){
-                    
-                    Palabra aux = tail(t->palabras);
-                    delete t->palabras;
-                    t->palabras = aux;
-                   
+            Palabra aux = t->palabras;
+            Palabra ant = t->palabras;
+            while (!isEmpty(aux)){
+                
+                if (strcmp(palabraABorrar, aux->palabra) == 0){
+                    if (aux == t->palabras){
+                        t->palabras = t->palabras->sig;
+                        delete aux;
+                        aux = t->palabras;
+                        ant = t->palabras;
+                    }else{
+                        ant->sig = aux->sig;
+                        delete aux;
+                        aux = ant->sig;
+                        
+                    }
+
+                } else{  
+                    ant = aux;
+                    aux = tail(aux);
                 }
             }
+           
         }else if(!isEmpty(t)){
             borrarOcurrenciasPalabraEnLinea(t->sig,x-1, palabraABorrar);
             
@@ -127,3 +143,14 @@ void borrarOcurrenciasPalabraEnTexto(Texto &t, Cadena palabraABorrar){
             x--;
         }    
 }
+/*
+void imprimirLineaPosicion(Texto t, int x){
+    if (x>= 0 && x <= cantLineas(t)){
+        if(x == 1){
+            imprimirLinea(t);
+        }else{
+            imprimirLineaPosicion(t->sig, x-1);
+        }
+    }
+}
+*/
