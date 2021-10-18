@@ -3,11 +3,11 @@
 
 #include "linea.h"
 #include "palabra.h"
-#include <string.h>
+#include <stdlib.h>
+#include <stdio.h>
 
-#define MAX_CANT_PALABRAS_X_LINEA 3
 
-typedef char* Cadena;
+
 enum _retorno{
     OK, ERROR, NO_IMPLEMENTADA
 };
@@ -34,11 +34,16 @@ TipoRetorno InsertarPalabra(Texto a, Posicion posicionLinea, Posicion posicionPa
 
 //      PREDICADO
 
+//Pre: Na.
+//Pos: Imprime todas las palabras de la posicion de linea dada.
+TipoRetorno ImprimirLinea(Texto a, Posicion posicionLinea);
+//Pre: Na.
+//Pos: Imprime todas las lineas y palabras del texto.
 TipoRetorno ImprimirTexto(Texto a);//Temporal
 
 //Pre: Na.
-//Pos: Agrega una linea nueva en la posicion dada en el texto a.
-TipoRetorno InsertarLineaEnPosicion(Texto &a, Posicion posicionLinea);
+//Post: Comprime el texto para que no queden líneas vacías ni líneas sin completar con excepción de la última línea del texto
+TipoRetorno ComprimirTexto(Texto &a);
 
 //      DESTRUCTORAS
 //Pre: Na.
@@ -50,27 +55,15 @@ TipoRetorno BorrarLinea(Texto &a, Posicion posicionLinea);
 TipoRetorno BorrarTodo(Texto &a);
 
 //Pre: Na.
-//Post: Borra todas las ocurrencias de la palabraABorrar del texto a
+//Pos: Borra todas las ocurrencias de la palabraABorrar del texto a
 TipoRetorno BorrarOcurrenciasPalabraEnTexto(Texto a, Cadena palabraABorrar);
 
 //Pre: Na.
-//Post: Borra tolas las ocurrencias de la palabraABorrar de la línea posicionLinea del texto a
+//Pos: Borra tolas las ocurrencias de la palabraABorrar de la línea posicionLinea del texto a
 TipoRetorno BorrarOcurrenciasPalabraEnLinea(Texto a, Posicion posicionLinea, Cadena palabraABorrar);
-/*
 //Pre: Na.
-//Post: Borra la palabra de la posición posicionPalabra de la línea posicionLinea
+//Pos: Borra la palabra de la posición posicionPalabra de la línea posicionLinea
 TipoRetorno BorrarPalabra(Texto a, Posicion posicionLinea, Posicion posicionPalabra);
-*/
-/*
-
-
-TipoRetorno ComprimirTexto(Texto &a);
-TipoRetorno ImprimirLinea(Texto a, Posicion posicionLinea);
-*/
-
-
-void verificacion(TipoRetorno r);
-int menu();
 
 
 #endif // OBLIG_H

@@ -1,9 +1,4 @@
 #include "oblig.h"
-#include "linea.h"
-#include "palabra.h"
-
-#include <stdio.h>
-#include <stdlib.h>
 
 TipoRetorno CrearTexto(Texto &a){
     a = crearTextoVacio();
@@ -57,7 +52,10 @@ TipoRetorno ImprimirTexto(Texto a){
 }
 
 //                                                                                  7°
-//TipoRetorno ComprimirTexto(Texto &a);
+TipoRetorno ComprimirTexto(Texto &a){
+    comprimirTexto(a);
+    return OK;
+}
 
 
 //                                                                                  8°
@@ -66,19 +64,19 @@ TipoRetorno InsertarPalabra(Texto a, Posicion posicionLinea, Posicion posicionPa
         if(posicionLinea>cantLineas(a) || posicionLinea==0){ 
             //Error por cantidad de lineas
             return ERROR;
-        }else if(posicionPalabra==0 || posicionPalabra>(1+cantPalabras(a, posicionLinea))){ 
+        }else if(posicionPalabra==0 || posicionPalabra>(1+cantPalabras(a, posicionLinea)) || posicionPalabra>MAX_CANT_PALABRAS_X_LINEA){ 
             //Error por cantidad de palabras
             return ERROR;
         }else{
             //Caso ok.
             crearPalabraPosicion(a, posicionLinea, posicionPalabra, palabraAIngresar);
+            verificarTamano(a);
             return OK;
         }
     }else{
         return ERROR;
     }
 }
-
 //                                                                                  9°
 TipoRetorno BorrarPalabra(Texto a, Posicion posicionLinea, Posicion posicionPalabra){
     if(a!=NULL){
@@ -109,43 +107,12 @@ TipoRetorno BorrarOcurrenciasPalabraEnLinea(Texto a, Posicion posicionLinea, Cad
 }
 
 //                                                                                    11°
-//TipoRetorno ImprimirLinea(Texto a, Posicion posicionLinea);
-
-
-
-
-
-
-void verificacion(TipoRetorno r){
-    if(r == OK){
-        printf("OK\n");
+TipoRetorno ImprimirLinea(Texto a, Posicion posicionLinea){
+    if (posicionLinea>= 0 && posicionLinea <= cantLineas(a)+1){
+        //printf("%d: ", posicionLinea);
+        imprimirLineaPosicion(a, posicionLinea);
+        return OK;
     }else{
-        printf("ERROR\n");
+        return ERROR;
     }
 }
-
-
-int menu(){
-    int opcion = 0;
-    
-    printf("Por favor digite una opción de las siguientes\n");
-    printf("1 - Crear un nuevo texto vacío\n");
-    printf("2 - Insertar una nueva línea\n");
-    printf("3 - Insertar nueva línea en una posición dada\n");
-    printf("4 - Borrar una línea en una posición dada\n");
-    printf("5 - Borrar todas las líneas del texto\n");
-    printf("6 - Borrar una palabra del texto\n");
-    printf("7 - Imprimir el texto\n");
-    printf("8 - Comprimir el texto\n");
-    printf("9 - Insertar una palabra en una línea\n");
-    printf("10 - Borrar palabra en posición dada\n");
-    printf("11 - Borrar una palabra de una línea dada\n");
-    printf("12 - Imprimir línea dada\n");
-    printf("Para salir ingrese -1\n");
-    printf("Ingrese una opción: ");
-    scanf("%d", &opcion);
-
-    return opcion;
-}   
-
-

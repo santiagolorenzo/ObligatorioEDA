@@ -1,8 +1,8 @@
 #ifndef PALABRA_H
 #define PALABRA_H
-
-#include "linea.h"
-#include "oblig.h"
+#define MAX_CANT_PALABRAS_X_LINEA 3
+#include <stdio.h>
+#include <stdlib.h>
 
 typedef char * Cadena;
 struct str_pal{
@@ -47,8 +47,6 @@ void imprimirPalabras(Palabra p);
 //Pos: Borra la palabra que está en la posición xp
 void borrarPalabra(Palabra &p, int xp);
 
-//Pre: Na.
-//Post: Borra la pablabra en la posición xp de la línea xl
-void borrarPalabraPosicion(Texto &t, int xl, int xp);
+
 
 #endif // PALABRA_H

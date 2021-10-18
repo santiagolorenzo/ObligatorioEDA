@@ -2,7 +2,8 @@
 #define LINEA_H
 
 #include "palabra.h"
-#include "oblig.h"
+#include <stdio.h>
+#include <stdlib.h>
 
 struct str_linea{
     Palabra palabras;
@@ -54,6 +55,17 @@ int cantPalabras(Texto t, int x);
 //Pre: Recibe un texto no vacio.
 //Pos: Devuelve la linea siguiente del texto.
 Texto tail(Texto l);
+//Pre: Na.
+//Pos: Si una palabra excede el limite maximo de palabras la inserta al principio de la proxima linea y borra la memoria vieja.
+void verificarTamano(Texto &t);
+
+//Pre: Na.
+//Post: Comprime el texto para que no queden líneas vacías ni líneas sin completar con excepción de la última línea del texto
+void comprimirTexto(Texto &t);
+
+//Pre: Na.
+//Post: Invierte la palabra a
+void invertirPalabra(Palabra &a);
 
 //      DESTRUCTORAS
 
@@ -73,9 +85,11 @@ void borrarOcurrenciasPalabraEnLinea(Texto &t, int x, Cadena palabraABorrar);
 //Pos: Borra todas las ocurrencias de la palabra dada en el texto t
 void borrarOcurrenciasPalabraEnTexto(Texto &t, Cadena palabraABorrar);
 
-/*
+//Pre: Na.
+//Post: Borra la pablabra en la posición xp de la línea xl
+void borrarPalabraPosicion(Texto &t, int xl, int xp);
 //Pre: Na.
 //Pos: Imprime la línea en la posición x
 void imprimirLineaPosicion(Texto t, int x);
-*/
+
 #endif // LINEA_H
