@@ -198,8 +198,6 @@ Texto invertirTexto(Texto t){
 void comprimirTexto(Texto &t){
     Texto aux = t;
     aux = invertirTexto(aux);
-    //imprimirTexto(aux);
-
     Palabra auxPal = NULL;
     Palabra auxPal2;
     
@@ -254,5 +252,3 @@ void invertirPalabra(Palabra &a){
     }
     a = dev;
 }
-
-

@@ -1,5 +1,4 @@
 #include "palabra.h"
-
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
@@ -35,6 +34,15 @@ void imprimirPalabras(Palabra p){
     }
 }
 
+void imprimirPalabraPosicion(Palabra p, int xp){
+	if(xp==1){
+        printf("%s ", p->palabra);
+	}
+	else if (!isEmpty(p)){
+        imprimirPalabraPosicion(p->sig, xp-1);
+	}
+}
+
 Palabra tail(Palabra p){
     return p->sig;
 }
@@ -66,4 +74,47 @@ void borrarPalabra(Palabra &p, int xp){
 	else if (!isEmpty(p)){
         	borrarPalabra(p->sig, xp-1);
 	}
+}
+
+UltPalabras crearUltPalabras(){
+    UltPalabras ultPalabras = new struct str_cabezal;
+    ultPalabras->primero = NULL;
+    ultPalabras->ultimo = NULL;
+    ultPalabras->cantidad = 0;
+    return ultPalabras;
+}
+
+void agregarUltPalabra(UltPalabras ultPalabras, Cadena palabra){
+    NodoD nd = new struct str_nodo_doble;
+    nd->palabra = new char;
+    memcpy(nd->palabra, palabra, sizeof(palabra)+1);
+    nd->ant = NULL;
+    nd->sig = ultPalabras->primero;
+    ultPalabras->cantidad = ultPalabras->cantidad + 1;
+
+    if (ultPalabras->primero == NULL){
+        ultPalabras->primero = nd;
+        ultPalabras->ultimo = nd;
+        
+    }else{
+        ultPalabras->primero->ant = nd;
+        ultPalabras->primero = nd;
+        if (ultPalabras->cantidad > MAX_CANT_ULTIMAS_PALABRAS){
+            ultPalabras->ultimo = ultPalabras->ultimo->ant;
+            delete ultPalabras->ultimo->sig;
+            ultPalabras->ultimo->sig = NULL;
+        }      
+    }
+}
+
+void imprimirUltPalabras(UltPalabras ultPalabras){
+    if (ultPalabras == NULL){
+        printf("No se ingresaron palabras\n");
+    }else{
+        NodoD aux = ultPalabras->primero;
+        while (aux != NULL){
+            printf("%s\n", aux->palabra);
+            aux = aux->sig;
+        }
+    }
 }

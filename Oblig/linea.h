@@ -92,4 +92,5 @@ void borrarPalabraPosicion(Texto &t, int xl, int xp);
 //Pos: Imprime la línea en la posición x
 void imprimirLineaPosicion(Texto t, int x);
 
+//Pre: Na.
 #endif // LINEA_H

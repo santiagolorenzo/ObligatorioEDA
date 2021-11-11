@@ -6,8 +6,6 @@ void verificacion(TipoRetorno r){
         printf("\nERROR\n");
     }
 }
-
-
 void desplegarMenu(){
     printf("\n\nPor favor digite una opcion de las siguientes\n");
     printf("1  - Insertar una nueva linea\n");
@@ -21,6 +19,11 @@ void desplegarMenu(){
     printf("9  - Borrar palabra en posicion dada\n");
     printf("10 - Borrar una palabra de una linea dada\n");
     printf("11 - Imprimir linea dada\n");
+    printf("12 - Agregar palabra al diccionario\n");
+    printf("13 - Borrar palabra del diccionario\n");
+    printf("14 - Imprimir diccionario\n");
+    printf("15 - Imprimir errores del texto\n");
+    printf("16 - Imprimir ultimas %d palabras del texto\n", MAX_CANT_ULTIMAS_PALABRAS);
     printf("Para salir ingrese -1\n");
     printf("Ingrese una opcion: ");
 }   

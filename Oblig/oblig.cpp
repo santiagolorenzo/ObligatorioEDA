@@ -109,10 +109,45 @@ TipoRetorno BorrarOcurrenciasPalabraEnLinea(Texto a, Posicion posicionLinea, Cad
 //                                                                                    11°
 TipoRetorno ImprimirLinea(Texto a, Posicion posicionLinea){
     if (posicionLinea>= 0 && posicionLinea <= cantLineas(a)+1){
-        //printf("%d: ", posicionLinea);
         imprimirLineaPosicion(a, posicionLinea);
         return OK;
     }else{
         return ERROR;
     }
+}
+
+//                                                                                    12°
+TipoRetorno IngresarPalabraDiccionario(Diccionario &d, Cadena palabraAIngresar){
+    if(buscarPalabraDicc(d, palabraAIngresar)){
+        return ERROR;
+    }else{
+        agregarPalabraDicc(d, palabraAIngresar);
+        return OK;
+    }
+}
+//                                                                                    13°
+TipoRetorno BorrarPalabraDiccionario(Diccionario &d, Cadena palabraABorrar){
+    if(buscarPalabraDicc(d, palabraABorrar)){
+        borrarPalabraDicc(d, palabraABorrar);
+        return OK;
+    }else{
+        return ERROR;
+    }
+    
+}
+//                                                                                    14°
+TipoRetorno ImprimirDiccionario(Diccionario d){
+    imprimirDicc(d);
+    return OK;
+}
+
+//                                                                                    15°
+TipoRetorno ImprimirTextoIncorrecto(Texto t, Diccionario d){
+    imprimirErroresTexto(t, d);
+    return OK;
+}
+//                                                                                     16°
+TipoRetorno ImprimirUltimasPalabras(UltPalabras p){
+    imprimirUltPalabras(p);
+    return OK;
 }

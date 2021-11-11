@@ -4,8 +4,11 @@
 int main(){
   int opcion = 0;
   Texto t=crearTextoVacio();
+  UltPalabras ultPalabras = crearUltPalabras();
+  Diccionario d = crearDiccVacio(); 
   TipoRetorno texto;
   while(opcion != -1){
+    
     desplegarMenu();
     int posicionLinea, posicionPalabra;
     Cadena palabra;
@@ -64,7 +67,8 @@ int main(){
         printf("Ingrese la posicion de palabra en la que se agregara: ");
         scanf("%d", &posicionPalabra);
         texto = InsertarPalabra(t, posicionLinea, posicionPalabra, palabra);
-         verificacion(texto);
+        agregarUltPalabra(ultPalabras, palabra);
+        verificacion(texto);
         break;
       case 9:
         // Borrar palabra en posición dada
@@ -91,6 +95,35 @@ int main(){
         texto = ImprimirLinea(t, posicionLinea);
         verificacion(texto);
         break;
+      case 12:
+        // Agregar palabra a diccionario
+        printf("Ingrese la palabra a agregar: ");
+        scanf("%s", palabra);
+        texto = IngresarPalabraDiccionario(d, palabra);
+        verificacion(texto);
+        break; 
+      case 13:
+        // Borrar palabra del diccionario
+        printf("Ingrese la palabra a borrar: ");
+        scanf("%s", palabra);
+        texto = BorrarPalabraDiccionario(d, palabra);
+        verificacion(texto);
+        break; 
+      case 14:
+        // Imprimir diccionario
+        texto = ImprimirDiccionario(d);
+        verificacion(texto);
+        break; 
+      case 15:
+        // Imprimir errores del texto
+        texto = ImprimirTextoIncorrecto(t, d);
+        verificacion(texto);
+        break;
+      case 16:
+        // Imprimir ultimas palabras
+        texto = ImprimirUltimasPalabras(ultPalabras);
+        verificacion(texto);
+        break;   
       default:
         printf("Error de opcion, ingrese una opcion valida: ");
         scanf("%d", &opcion);
@@ -98,127 +131,3 @@ int main(){
     }
   }
 }
-  /*
-  	Texto t;
-    TipoRetorno tr = CrearTexto(t);
-    tr = InsertarLinea(t);
-    tr = InsertarLinea(t);
-    tr = InsertarLinea(t);
-    tr = InsertarLinea(t);
-    tr = InsertarLinea(t);
-    printf("la cantidad de lineas es %d\n", cantLineas(t));
-    printf("la cantidad de palabras es %d\n", cantPalabras(t, 1));
-    Cadena x, y;
-    int p, h;
-    printf("Ingresa una palabra: ");
-    scanf("%s", x);
-    printf("Ingresa la posicion: ");
-    scanf("%d", &p);
-    tr= InsertarPalabra(t, 1, p, x);
-    verificacion(tr); 
-    tr= InsertarPalabra(t, 1, p+1, x);
-    verificacion(tr);    
-    tr= InsertarPalabra(t, 1, 3, x);
-    verificacion(tr);  
-    tr= InsertarPalabra(t, 1, 3, x);
-    verificacion(tr);
-
-    // Agregar palabras en segunda linea
-
-    printf("Ingresa una nueva palabra: ");
-    scanf("%s", x);
-    printf("Ingresa una nueva posicion: ");
-    scanf("%d", &p);
-    tr= InsertarPalabra(t, 2, p, x);
-    tr= InsertarPalabra(t, 2, p+1, x);
-    tr = ImprimirTexto(t);
-    
-    printf("\n\n");
-    tr= ImprimirTexto(t);
-    printf("la cantidad de lineas es %d\n", cantLineas(t));
-    printf("la cantidad de palabras es %d\n", cantPalabras(t, 1));
-    */
-	
-	
-	/*
-	
-	Texto t;
-    TipoRetorno tr = CrearTexto(t);
-    tr = InsertarLinea(t);
-    verificacion(tr);
-    tr = InsertarLinea(t);
-    verificacion(tr);
-    tr = InsertarLinea(t);
-    verificacion(tr);
-    tr = InsertarLinea(t);
-    verificacion(tr);
-    tr = InsertarLinea(t);
-    verificacion(tr);
-    printf("la cantidad de lineas es %d\n", cantLineas(t));
-    printf("la cantidad de palabras es %d\n", cantPalabras(t, 1));
-    Cadena x, y;
-    int p, h;
-    printf("Ingresa una palabra: ");
-    scanf("%s", x);
-    printf("Ingresa la posicion: ");
-    scanf("%d", &p);
-    tr= InsertarPalabra(t, 1, p, x);
-    tr= InsertarPalabra(t, 1, p+1, x);
-    verificacion(tr);    
-    tr= InsertarPalabra(t, 4, 1, x);
-    verificacion(tr);
-    tr = ImprimirTexto(t);
-    verificacion(tr);
-
-    printf("Ingresa una nueva palabra: ");
-    scanf("%s", x);
-    tr= InsertarPalabra(t, 1, p+1, x);
-    tr= InsertarPalabra(t, 1, p+1, x);
-    tr = ImprimirTexto(t);
-    printf("Ingresa una palabra a borrar: ");    
-    scanf("%s", y);
-    //printf("%s\n", y);
-    //tr = BorrarOcurrenciasPalabraEnLinea(t, 1, y);
-    tr = BorrarOcurrenciasPalabraEnTexto(t, y);
-    verificacion(tr);
-    tr = ImprimirTexto(t);
-    verificacion(tr);
-
-
-    tr = ImprimirLinea(t, 1);
-	
-	
-    tr = ComprimirTexto(t);
-    verificacion(tr);
-
-    printf("TEXTO COMPRIMIDO: \n");
-    tr = ImprimirTexto(t);
-	
-
-    //tr = BorrarLinea(t, 2);
-	//verificacion(tr);
-    //tr = ImprimirTexto(t);
-	/*
-	tr= InsertarPalabra(t, 1, 3, x);
-    verificacion(tr);  
-    tr= InsertarPalabra(t, 1, 3, x);
-    verificacion(tr);
-    tr = ImprimirTexto(t);
-    verificacion(tr);
-
-		Agregar palabras en segunda linea
-
-    printf("Ingresa una nueva palabra: ");
-    scanf("%s", x);
-    printf("Ingresa una nueva posicion: ");
-    scanf("%d", &p);
-    tr= InsertarPalabra(t, 2, p, x);
-    tr= InsertarPalabra(t, 2, p+1, x);
-    tr = ImprimirTexto(t);
-    
-    printf("\n\n");
-    tr= ImprimirTexto(t);
-    printf("la cantidad de lineas es %d\n", cantLineas(t));
-    printf("la cantidad de palabras es %d\n", cantPalabras(t, 1));
-	
-	*/
